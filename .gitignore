@@ -4,6 +4,15 @@
 # Log file
 *.log
 
+# iml file
+*.iml
+
+# .md
+*.md
+
+# Python Files
+*.py
+
 # BlueJ files
 *.ctxt
 
