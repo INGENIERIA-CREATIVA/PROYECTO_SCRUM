@@ -3,8 +3,10 @@ public class Empresa {
     private long id;
     private String name, document, phone, address;
     private Date createdAt, updatedAt;
+    private Transaction[] transactions;
+    private Users[] users;
 
-    public Empresa(long id, String name, String document, String phone, String address, Date createdAt, Date updatedAt) {
+    public Empresa(long id, java.lang.String name, java.lang.String document, java.lang.String phone, java.lang.String address, Date createdAt, Date updatedAt, Transaction[] transactions, Users[] users) {
         this.id = id;
         this.name = name;
         this.document = document;
@@ -12,6 +14,8 @@ public class Empresa {
         this.address = address;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.transactions = transactions;
+        this.users = users;
     }
 
     public long getId() {
@@ -68,5 +72,21 @@ public class Empresa {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Transaction[] getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(Transaction[] transactions) {
+        this.transactions = transactions;
+    }
+
+    public Users[] getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users[] users) {
+        this.users = users;
     }
 }
