@@ -1,92 +1,66 @@
+package com.proyectodePruebaUdeA.ciclo3.modelos;
+
+import javax.persistence.*;
+import javax.persistence.GenerationType;
+
+@Entity
+@Table(name="Empresa")
 public class Empresa {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    private String nombre;
+    private String direccion;
+    private String telefono;
+    private String NIT;
 
-    private long id;
-    private String name, document, phone, address;
-    private Date createdAt, updatedAt;
-    private Transaction[] transactions;
-    private Users[] users;
-
-    public Empresa(long id, String name, String document, String phone, String address, Date createdAt, Date updatedAt, Transaction[] transactions, Users[] users) {
-        this.id = id;
-        this.name = name;
-        this.document = document;
-        this.phone = phone;
-        this.address = address;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.transactions = transactions;
-        this.users = users;
+    public Empresa() {
     }
 
-    public long getId() {
+    public Empresa(String nombre, String direccion, String telefono, String NIT) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.NIT = NIT;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getDocument() {
-        return document;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setDocument(String document) {
-        this.document = document;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    public String getAddress() {
-        return address;
+    public String getNIT() {
+        return NIT;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Transaction[] getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(Transaction[] transactions) {
-        this.transactions = transactions;
-    }
-
-    public Users[] getUsers() {
-        return users;
-    }
-
-    public void setUsers(Users[] users) {
-        this.users = users;
+    public void setNIT(String NIT) {
+        this.NIT = NIT;
     }
 }
