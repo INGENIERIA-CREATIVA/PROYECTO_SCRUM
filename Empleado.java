@@ -1,84 +1,70 @@
-public class Empleado {
-    private long id;
-    private String email;
-    public Profile profile;
-    public Enum_RolName {Admin, Operario};
-    public Enterprise enterprise;
-    public Transaction[] transactions;
-    private date updatedAT, createdAT;
+package com.proyectodePruebaUdeA.ciclo3.modelos;
 
-    public Empleado(long id, String email, Profile profile, Enum_RolName role, Enterprise enterprise, Transaction[] transactions, date updatedAT, date createdAT) {
-        this.id = id;
-        this.email = email;
-        this.profile = profile;
-        this.role = role;
-        this.enterprise = enterprise;
-        this.transactions = transactions;
-        this.updatedAT = updatedAT;
-        this.createdAT = createdAT;
+import javax.persistence.*;
+import javax.persistence.GenerationType;
+
+@Entity
+@Table(name="Empleado")
+public class Empleado {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    private String nombre;
+    private String correo;
+
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;
+    private String rol;
+
+    public Empleado() {
     }
 
-    public long getId() {
+    public Empleado(String nombre, String correo, Empresa empresa, String rol) {
+        this.nombre = nombre;
+        this.correo = correo;
+        this.empresa = empresa;
+        this.rol = rol;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public Profile getProfile() {
-        return profile;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
-    public Enum_RolName getRole() {
-        return role;
+    public String getRol() {
+        return rol;
     }
 
-    public void setRole(Enum_RolName role) {
-        this.role = role;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
-    public Enterprise getEnterprise() {
-        return enterprise;
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setEnterprise(Enterprise enterprise) {
-        this.enterprise = enterprise;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
-    public Transaction[] getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(Transaction[] transactions) {
-        this.transactions = transactions;
-    }
-
-    public date getUpdatedAT() {
-        return updatedAT;
-    }
-
-    public void setUpdatedAT(date updatedAT) {
-        this.updatedAT = updatedAT;
-    }
-
-    public date getCreatedAT() {
-        return createdAT;
-    }
-
-    public void setCreatedAT(date createdAT) {
-        this.createdAT = createdAT;
-    }
 }
