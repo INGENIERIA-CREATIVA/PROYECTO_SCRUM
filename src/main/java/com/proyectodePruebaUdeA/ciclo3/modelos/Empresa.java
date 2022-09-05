@@ -64,3 +64,4 @@ public class Empresa {
         this.NIT = NIT;
     }
 }
+
