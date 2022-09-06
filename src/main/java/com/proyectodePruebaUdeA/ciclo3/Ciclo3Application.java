@@ -1,5 +1,6 @@
 package com.proyectodePruebaUdeA.ciclo3;
 
+import com.proyectodePruebaUdeA.ciclo3.modelos.Empleado;
 import com.proyectodePruebaUdeA.ciclo3.modelos.Empresa;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,7 +20,7 @@ public class Ciclo3Application {
 
 	@GetMapping("/test")
 	public String test(){
-		Empresa emp = new Empresa("SQFULLPACKAGE","OASIS DE LA MODA", "3232323", "71219652");
+		Empresa emp = new Empresa();
 		emp.setNombre("SQLFULLPACKAGE SAS");
 		return emp.getNombre();
 	}
