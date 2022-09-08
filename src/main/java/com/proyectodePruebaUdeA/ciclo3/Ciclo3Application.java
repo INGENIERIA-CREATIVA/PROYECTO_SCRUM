@@ -17,12 +17,12 @@ public class Ciclo3Application {
 	}
 
 
-	@GetMapping("/test")
+	/*@GetMapping("/test")
 	public String test(){
 		Empresa emp = new Empresa("SQFULLPACKAGE","OASIS DE LA MODA", "3232323", "71219652");
 		emp.setNombre("SQLFULLPACKAGE SAS");
 		return emp.getNombre();
-	}
+	}*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(Ciclo3Application.class, args);
