@@ -36,16 +36,11 @@ public class Empresa {
     public Empresa() {
     }
 
-    public Empresa(int id, String nombre, String direccion, String telefono, String NIT, List<Empleado> empleados, List<MovimientoDinero> movimientoDineros, Date creadoEn, Date actualizadoEn) {
-        this.id = id;
+    public Empresa(String nombre, String direccion, String telefono, String NIT) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         this.NIT = NIT;
-        this.empleados = empleados;
-        this.movimientoDineros = movimientoDineros;
-        this.creadoEn = creadoEn;
-        this.actualizadoEn = actualizadoEn;
     }
 
     public int getId() {

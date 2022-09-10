@@ -26,8 +26,7 @@ public class Perfil {
     public Perfil() {
     }
 
-    public Perfil(String id, String foto, String telefono, Empleado empleado, Date creadoEn, Date actualizadoEn) {
-        this.id = id;
+    public Perfil(String foto, String telefono, Empleado empleado, Date creadoEn, Date actualizadoEn) {
         this.foto = foto;
         this.telefono = telefono;
         this.empleado = empleado;

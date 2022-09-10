@@ -3,18 +3,27 @@ package com.proyectodePruebaUdeA.ciclo3.modelos;
 
 import javax.persistence.*;
 import javax.persistence.GenerationType;
+import java.util.Date;
 
 @Entity
 @Table(name="Movimientos")
 public class MovimientoDinero {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false, unique = true)
     private int id;
+    @Column(name = "monto")
     private long monto;
+    @Column(name = "concepto")
     private String concepto;
     @ManyToOne
     @JoinColumn(name = "empleado_id")
     private Empleado usuario;
+
+    @Column(name = "creadoEn")
+    private Date creadoEn;
+    @Column(name = "actualizadoEn")
+    private Date actualizadoEn;
 
     public MovimientoDinero() {
     }

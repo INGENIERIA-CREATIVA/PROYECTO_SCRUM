@@ -1,6 +1,7 @@
 package com.proyectodePruebaUdeA.ciclo3.modelos;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="Empleado")
@@ -8,20 +9,34 @@ public class Empleado {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
+    @Column(name = "nombre", nullable = false)
     private String nombre;
+    @Column(name = "correo", nullable = false, unique = true)
     private String correo;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "rol")
+    private Enum_Roles rol;
+
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
-    private String rol;
+
+    @OneToOne
+    @JoinColumn(name = "perfil_id")
+    private Perfil perfil;
+
+    @Column(name = "creadoEn")
+    private Date creadoEn;
+    @Column(name = "actualizadoEn")
+    private Date actualizadoEn;
 
     public Empleado() {
     }
 
-    public Empleado(String nombre, String correo, Empresa empresa, String rol) {
+    public Empleado(String nombre, String correo, Enum_Roles rol) {
         this.nombre = nombre;
         this.correo = correo;
-        this.empresa = empresa;
         this.rol = rol;
     }
 
@@ -49,11 +64,11 @@ public class Empleado {
         this.correo = correo;
     }
 
-    public String getRol() {
+    public Enum_Roles getRol() {
         return rol;
     }
 
-    public void setRol(String rol) {
+    public void setRol(Enum_Roles rol) {
         this.rol = rol;
     }
 
@@ -63,5 +78,29 @@ public class Empleado {
 
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
+    }
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
+
+    public Date getCreadoEn() {
+        return creadoEn;
+    }
+
+    public void setCreadoEn(Date creadoEn) {
+        this.creadoEn = creadoEn;
+    }
+
+    public Date getActualizadoEn() {
+        return actualizadoEn;
+    }
+
+    public void setActualizadoEn(Date actualizadoEn) {
+        this.actualizadoEn = actualizadoEn;
     }
 }
