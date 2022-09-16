@@ -1,6 +1,7 @@
 package com.proyectodePruebaUdeA.ciclo3.service;
 
 import com.proyectodePruebaUdeA.ciclo3.modelos.Empleado;
+import com.proyectodePruebaUdeA.ciclo3.modelos.Empresa;
 import com.proyectodePruebaUdeA.ciclo3.repo.EmpleadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.Optional;
 @Service
 public class EmpleadoService {
 
-     @Autowired
+    @Autowired
     EmpleadoRepository empleadoRepository;
     // Metodo para ver los empleados registrados en la base de datos
     public List<Empleado> getAllEmpleado(){
@@ -21,7 +22,7 @@ public class EmpleadoService {
         return empleadoList;
 
     }
-     //Metodo para buscar empleado por ID
+    //Metodo para buscar empleado por ID
     public Optional<Empleado> getEmpleadoById(Integer id){ //Otra forma de Hacerlo metodo Optional
         return empleadoRepository.findById(id);
     }
@@ -32,10 +33,13 @@ public class EmpleadoService {
     }
 
     //Metodo para guardar o actualizar los registros en empleados(Usuarios)
-    public Empleado saveOrUpDateEmpleado(Empleado empleado){
-        return empleadoRepository.save(empleado);
+    public boolean saveOrUpDateEmpleado(Empleado empl){
+        Empleado emp=empleadoRepository.save(empl);
+        if (empleadoRepository.findById(emp.getId())!=null){
+            return true;
+        }
+        return false;
     }
-
     //Metodo para eliminar un registro de empleado por Id
     public boolean deleteEmpleado(Integer id){
         empleadoRepository.deleteById(id);

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Lista de Empresas</title>
+    <title>Lista de Empleados</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -22,40 +22,36 @@
 <body>
 
 <div class="container-fluid">
-   <h1>Lista de Empresas</h1>
+   <h1>Lista de Empleados</h1>
     <!--Dibujamos la tabla -->
     <br><table class="table table-bordered">
         <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Dirección</th>
-            <th>Telefono</th>
-            <th>Nit</th>
-            <th>Empleados</th>
+            <th>Correo</th>
+            <th>Empresa</th>
+            <th>Rol</th>
             <th>Editar</th>
             <th>Eliminar</th>
-
-
         </tr>
         <!--Llenamos la Tabla dibujada -->
-        <!--En nuestro controller, creamos en viewEmpresa un modelo con un atributo llamado emplist donde esta guardada la lista de todas las empresas -->
-            <tr th:each="empresa : ${emplist}">
-            <td th:text="${empresa.id}"></td>
-            <td th:text="${empresa.nombre}"></td>
-            <td th:text="${empresa.direccion}"></td>
-            <td th:text="${empresa.telefono}"></td>
-            <td th:text="${empresa.NIT}"></td>
-
-            <td><button type="button" class="btn btn-info"><a th:href="@{/Empresa/{id}/Empleados (id=${empresa.id})}">Ver</a></button></td>
-            <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarEmpresa/{id}(id=${empresa.id})}">Editar</a></button></td>
-            <td><button type="button" class="btn btn-danger"><a  th:href="@{/EliminarEmpresa/{id}(id=${empresa.id})}">Eliminar</a></button></td>
+        <!--En nuestro controller, creamos en viewEmpleados un modelo con un atributo llamado emplelist donde esta guardada la lista de todos los empleados -->
+            <tr th:each="empleado : ${emplelist}">
+            <td th:text="${empleado.id}"></td>
+            <td th:text="${empleado.nombre}"></td>
+            <td th:text="${empleado.correo}"></td>
+            <td th:text="${empleado.empresa.nombre}"></td>
+            <td th:if="${empleado.rol=='1'}">Administrativo</td>
+            <td th:if="${empleado.rol=='2'}">Operativo</td>
+            <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarEmpleado/{id}(id=${empleado.id})}">Editar</a></button></td>
+            <td><button type="button" class="btn btn-danger"><a  th:href="@{/EliminarEmpleado/{id}(id=${empleado.id})}">Eliminar</a></button></td>
         </tr>
     </table>
 
     <!-- Creamos un boton que sirva para agregar nuevas empresas -->
-    <button type="button" class="btn btn-info"><a th:href="@{/AgregarEmpresa}">Agregar Nueva Empresa</a></button>
+    <button type="button" class="btn btn-info"><a th:href="@{/AgregarEmpleado}">Agregar Nuevo Empleado</a></button>
     <br><br>
-    <button type="button" class="btn btn-primary"><a th:href="@{/VerEmpleados}">Ver Lista de Empleados</a></button>
+    <button type="button" class="btn btn-primary"><a th:href="@{/VerEmpresas}">Ver Lista de Empresas</a></button>
 </div>
 
 <script th:inline="javascript">
@@ -63,16 +59,16 @@
 
     var msg=[[${mensaje}]];
     if (msg =="GuardarOK"){
-        Command : toastr["success"]("Empresa creada con exito!")
+        Command : toastr["success"]("Empleado creado con exito!")
         }
     else if (msg == "ActualizarOK"){
-        Command : toastr["success"]("Empresa actualizada con exito!")
+        Command : toastr["success"]("Empleado actualizado con exito!")
         }
     else if (msg == "EliminarOK"){
-        Command : toastr["error"]("Empresa eliminada con exito!")
+        Command : toastr["error"]("Empleado eliminado con exito!")
         }
     else if (msg == "EliminarERROR"){
-        Command : toastr["error"]("Empresa no ha sido eliminada!")
+        Command : toastr["error"]("Empleado no ha sido eliminada!")
     }
     toastr.options={
         "positionClass": "toast-top-rigth",
