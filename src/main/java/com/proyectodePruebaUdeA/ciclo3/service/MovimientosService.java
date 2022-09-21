@@ -1,6 +1,5 @@
 package com.proyectodePruebaUdeA.ciclo3.service;
 
-import com.proyectodePruebaUdeA.ciclo3.modelos.Empleado;
 import com.proyectodePruebaUdeA.ciclo3.modelos.MovimientoDinero;
 import com.proyectodePruebaUdeA.ciclo3.repo.MovimientosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MovimientosService {
@@ -18,7 +16,7 @@ public class MovimientosService {
     // Metodo que muestra todos los movimientos sin filtro
     public List<MovimientoDinero> getAllMovimientos(){
         List<MovimientoDinero> movimientosList= new ArrayList<>();
-       movimientosRepository.findAll().forEach(movimiento -> movimientosList.add(movimiento));
+        movimientosRepository.findAll().forEach(movimiento -> movimientosList.add(movimiento));
         return movimientosList;
     }
     //Metodo para buscar movimientos por id
@@ -26,9 +24,12 @@ public class MovimientosService {
         return movimientosRepository.findById(id).get();
     }
     //Metodo para guardar o actualizar
-    public MovimientoDinero saveOrUpdateMovimiento(MovimientoDinero movimientoDinero){
+    public boolean saveOrUpdateMovimiento(MovimientoDinero movimientoDinero){
         MovimientoDinero mov=movimientosRepository.save(movimientoDinero);
-        return mov;
+        if(movimientosRepository.findById(mov.getId())!=null){
+            return true;
+        }
+        return false;
     }
     //Metodo para eliminar un movimiento por Id
     public boolean deleteMovimiento(Integer id){
